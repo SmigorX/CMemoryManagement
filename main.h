@@ -9,7 +9,6 @@ void mecalloc();
 typedef struct s_heap {
     struct s_heap *prev;      // Pointer to the previous heap in the list
     struct s_heap *next;      // Pointer to the next heap in the list
-    //heap_group group;         // Custom type to group heaps (implementation dependent)
     size_t total_size;        // Total size of the heap
     size_t free_size;         // Amount of free space in the heap
     size_t block_count;       // Number of memory blocks in the heap
