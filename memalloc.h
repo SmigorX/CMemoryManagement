@@ -15,18 +15,19 @@ typedef struct s_heap {
 } t_heap;
 
 typedef struct s_block {
-    size_t is_free;            // Whether the block is free or allocated
+    size_t is_free;     // Whether the block is free or allocated
+    t_heap *heap;
 } t_block;
 
 //memory offset of struct size to access data
-#define HEAP_SHIFT(start)  ((void *)(start + sizeof(t_heap)))
-#define BLOCK_SHIFT(start)  ((void *)(start + sizeof(t_block)))
+#define HEAP_SHIFT(start)  ((void *)((char *)(start) + sizeof(t_heap)))
+#define BLOCK_SHIFT(start)  ((void *)((char *)(start) + sizeof(t_block)))
 
 //we split allocations into 3 sizes
 #define SMALL_HEAP_ALLOCATION_SIZE (4 * getpagesize())
 #define SMALL_BLOCK_SIZE (SMALL_HEAP_ALLOCATION_SIZE / 128)
 #define MEDIUM_HEAP_ALLOCATION_SIZE (16 * getpagesize())
-#define MEDIUM_BLOCK_SIZE (SMALL_HEAP_ALLOCATION_SIZE / 128)
+#define MEDIUM_BLOCK_SIZE (MEDIUM_HEAP_ALLOCATION_SIZE / 128)
 
 #endif
 
